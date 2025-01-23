@@ -2,32 +2,45 @@
 
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
-import { useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 // import type { Template, Alignment } from "@prisma/client"
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
-import TextStyle from '@tiptap/extension-text-style';
-import Color from '@tiptap/extension-color';
+import TextStyle from "@tiptap/extension-text-style";
+import Color from "@tiptap/extension-color";
 import { storage } from "@/config/appwrite-config/appwrite";
 import { env } from "@/env";
 import { ID } from "appwrite";
 import { Loader } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Toaster } from "@/components/ui/toaster";
+const JoditEditor = dynamic(() => import("jodit-react"), { ssr: false });
 
 export default function TemplateEditor({ template, onTemplateChange }) {
   const [image, setImage] = useState(null);
   const { toast } = useToast();
   const [isImageUploading, setisImageUploading] = useState(false);
-  const editor = useEditor({
-    extensions: [StarterKit, TextStyle, Color],
-    content: template.content,
-    onUpdate: ({ editor }) => {
-      const contentHtml = editor.getHTML();
-      onTemplateChange({ content: contentHtml });
-    //   console.log("Editor Content:", contentHtml);
-    },
-  });
+  const config = useMemo(
+    () => ({
+      readonly: false,
+      placeholder: "Write Content here...",
+      toolbarAdaptive: false,
+      buttons: [
+        "bold",
+        "italic",
+        "underline",
+        "|",
+        "ul",
+        "ol",
+        "|",
+        "font",
+        "fontsize",
+        "|",
+        "link",
+      ],
+    }),
+    []
+  );
   const handleImageRender = (e) => {
     const file = e.target.files?.[0];
     if (file) {
@@ -141,11 +154,13 @@ export default function TemplateEditor({ template, onTemplateChange }) {
           <label className="block text-sm font-black text-gray-700 mb-2">
             Content
           </label>
-          <EditorContent
-            onChange={() => {
-              console.log(editor.getHTML());
+          <JoditEditor
+            value={template.content}
+            config={config}
+            onChange={(newContent) => {
+              //   console.log(newContent);
+              onTemplateChange({ content: newContent });
             }}
-            editor={editor}
           />
         </div>
 
