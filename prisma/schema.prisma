@@ -1,0 +1,65 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Alignment {
+  left
+  center
+  right
+}
+
+model Template {
+  templateId    Int            @id @default(autoincrement())
+  name          String
+  description   String?
+  thumbnailUrl  String
+  titleSize     String         @default("2rem")
+  titleColor    String         @default("#2196F3")
+  footerSize    String         @default("2rem")
+  footerColor   String         @default("#2196F3")
+  alignment     Alignment      @default(center)
+  title         String         @default("Title")
+  content       String         @default("Thank you for joining XYZ Company! We're excited to have you on board. Explore our services and stay tuned for updates tailored just for you. If you have any questions, feel free to reply to this email—we're here to help!")
+  footer        String         @default("Best regards, The XYZ Company Team")
+  imageUrl      String         @default("https://imgs.search.brave.com/qqEbaONGfW1-dtR9aaK7euODkZZtho1RMahRVQNCM9k/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9mLmh1/YnNwb3R1c2VyY29u/dGVudDIwLm5ldC9o/dWJmcy80OTg4ODcy/L2FkZGl0aW9uYWwt/aHVic3BvdC1hY2Nv/dW50LWdsb2JlLnBu/Zw")
+  html          String
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  UserTemplates UserTemplate[]
+}
+
+model UserTemplate {
+  id           Int       @id @default(autoincrement())
+  userId       String
+  templateId   Int
+  name         String
+  description  String?
+  thumbnailUrl String
+  titleSize    String    @default("2rem")
+  titleColor   String    @default("#2196F3")
+  footerSize   String    @default("2rem")
+  footerColor  String    @default("#2196F3")
+  alignment    Alignment @default(center)
+  title        String
+  content      String
+  footer       String
+  imageUrl     String
+  html         String
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  template Template @relation(fields: [templateId], references: [templateId])
+
+  @@unique([userId, templateId])
+}
