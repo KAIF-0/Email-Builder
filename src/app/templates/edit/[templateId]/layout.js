@@ -22,7 +22,9 @@ const Layout = ({ children }) => {
       >
         {children}
       </body>
-      <Footer />
+      <div className="hidden sm:block">
+        <Footer />
+      </div>
     </html>
   );
 };
