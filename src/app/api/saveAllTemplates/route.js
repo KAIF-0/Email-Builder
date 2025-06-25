@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 
 export async function POST(req) {
   try {
-    const { templates } = await req.json();
+    const  templates  = await req.json();
     console.log(templates);
 
     await prisma.template.deleteMany();
