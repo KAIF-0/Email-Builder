@@ -19,6 +19,9 @@ export async function GET(req) {
       where: {
         userId: userId,
       },
+      orderBy: {
+        updatedAt: "desc",
+      },
     });
     // console.log(userTemplates, userId);
     return NextResponse.json(userTemplates, {
