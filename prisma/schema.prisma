@@ -20,7 +20,7 @@ enum Alignment {
 }
 
 model Template {
-  templateId    Int            @id @default(autoincrement())
+  id    Int            @id @default(autoincrement())
   name          String
   description   String?
   thumbnailUrl  String
@@ -36,12 +36,11 @@ model Template {
   html          String
   createdAt     DateTime       @default(now())
   updatedAt     DateTime       @updatedAt
-  UserTemplates UserTemplate[]
 }
 
 model UserTemplate {
   id           Int       @id @default(autoincrement())
-  userId       String
+  userId       String    
   templateId   Int
   name         String
   description  String?
@@ -58,8 +57,4 @@ model UserTemplate {
   html         String
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @updatedAt
-
-  template Template @relation(fields: [templateId], references: [templateId])
-
-  @@unique([userId, templateId])
 }

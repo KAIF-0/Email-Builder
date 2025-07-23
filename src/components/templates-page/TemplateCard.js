@@ -14,15 +14,15 @@ export default function TemplateCard({ template }) {
   const getLikeKey = (templateId) => `template_${templateId}_liked`;
 
   useEffect(() => {
-    const likeStatus = localStorage.getItem(getLikeKey(template.templateId));
+    const likeStatus = localStorage.getItem(getLikeKey(template.id));
     setUserLiked(likeStatus === "true");
-  }, [template.templateId]);
+  }, [template.id]);
 
   const handleLike = () => {
     const newLikeStatus = !userLiked;
     setUserLiked(newLikeStatus);
     localStorage.setItem(
-      getLikeKey(template.templateId),
+      getLikeKey(template.id),
       newLikeStatus.toString()
     );
   };
@@ -36,9 +36,8 @@ export default function TemplateCard({ template }) {
       }}
     >
       <Link
-        href={`/templates/view/${template.templateId}?userTemplate=${
-          template?.userId ? true : false
-        }`}
+        href={`/templates/view/${template.id}?userTemplate=${template?.userId ? true : false
+          }`}
       >
         <div className="relative h-40">
           <Image
@@ -57,9 +56,8 @@ export default function TemplateCard({ template }) {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               onClick={handleLike}
-              className={`flex items-center space-x-2 ${
-                userLiked ? "text-blue-500" : "text-gray-500"
-              }`}
+              className={`flex items-center space-x-2 ${userLiked ? "text-blue-500" : "text-gray-500"
+                }`}
             >
               <ThumbsUp size={18} />
             </motion.button>
@@ -72,9 +70,8 @@ export default function TemplateCard({ template }) {
               onClick={() => setShowOptions(!showOptions)}
             >
               <Link
-                href={`templates/edit/${template.templateId}?userTemplate=${
-                  template?.userId ? true : false
-                }`}
+                href={`templates/edit/${template?.id}?userTemplate=${template?.userId ? true : false
+                  }`}
                 className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
               >
                 <Edit size={18} className="inline mr-2" />

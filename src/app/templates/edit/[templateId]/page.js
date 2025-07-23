@@ -52,7 +52,7 @@ export default function EditPage({ params }) {
   });
 
   const handleSaveTemplate = () => {
-    mutation.mutate(template);
+    mutation.mutate({ template, isUserTemplate });
   };
 
   if (isLoading) {

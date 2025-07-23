@@ -16,9 +16,10 @@ export async function GET(req, { params }) {
   }
 
   try {
-    const templateDetails = await prisma.userTemplate.findUnique({
+    const templateDetails = await prisma.userTemplate.findFirst({
       where: {
-        userId_templateId: { userId, templateId: parseInt(templateId) },
+        userId: userId,
+        id: parseInt(templateId),
       },
     });
     // console.log(templateDetails)

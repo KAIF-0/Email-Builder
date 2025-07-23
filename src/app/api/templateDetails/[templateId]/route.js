@@ -16,7 +16,7 @@ export async function GET(req, { params }) {
   try {
     const templateDetails = await prisma.template.findUnique({
       where: {
-        templateId: parseInt(templateId),
+        id: parseInt(templateId),
       },
     });
     // console.log(templateDetails)
