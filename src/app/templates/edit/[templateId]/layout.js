@@ -15,17 +15,15 @@ const geistMono = Geist_Mono({
 
 const Layout = ({ children }) => {
   return (
-    <html lang="en">
+    <div>
       <Header />
-      <body
+      <div
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
-      </body>
-      <div className="hidden sm:block">
-        <Footer />
       </div>
-    </html>
+      <Footer />
+    </div>
   );
 };
 
