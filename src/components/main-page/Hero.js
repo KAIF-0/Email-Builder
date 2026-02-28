@@ -18,7 +18,7 @@ export default function Hero() {
             Create stunning email templates with ease
           </h1>
           <p className="text-xl mb-8">
-            EmailBuilder helps you design and send beautiful email campaigns in
+            EmailForge helps you design and send beautiful email campaigns in
             minutes, no coding required.
           </p>
           <motion.button
@@ -37,7 +37,7 @@ export default function Hero() {
         >
           <Image
             src="https://media.istockphoto.com/id/1337458287/vector/email-marketing-abstract-concept-vector-illustration.jpg?s=612x612&w=0&k=20&c=25JfbyP_I9fR3sBWJsNTPZ1vzHPr8nHK2bFRmQDYiwE="
-            alt="Email Builder Interface"
+            alt="Email Forge Interface"
             width={500}
             height={400}
             className="rounded-lg shadow-2xl border-black border-2"

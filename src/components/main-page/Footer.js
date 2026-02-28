@@ -26,7 +26,7 @@ export default function Footer() {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.3 }}
         >
-          <h3 className="text-xl font-semibold mb-4">EmailBuilder</h3>
+          <h3 className="text-xl font-semibold mb-4">EmailForge</h3>
           <p className="text-gray-600">Create stunning email templates with ease.</p>
         </motion.div>
         <motion.div
@@ -73,10 +73,10 @@ export default function Footer() {
             <li className="flex items-center space-x-2">
               <Mail size={18} />
               <a
-                href="mailto:contact@emailbuilder.com"
+                href="mailto:contact@emailforge.com"
                 className="text-gray-600 hover:text-gray-900 transition-colors"
               >
-                contact@emailbuilder.com
+                contact@emailforge.com
               </a>
             </li>
           </ul>
@@ -111,7 +111,7 @@ export default function Footer() {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.7 }}
       >
-        <p className="text-gray-600">&copy; {new Date().getFullYear()} EmailBuilder. All rights reserved.</p>
+        <p className="text-gray-600">&copy; {new Date().getFullYear()} EmailForge. All rights reserved.</p>
       </motion.div>
     </div>
   </motion.div>

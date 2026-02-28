@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Email Builder",
-  description: "Customize you Email with pre-built templates on Email Builder",
+  title: "Email Forge",
+  description: "Customize you Email with pre-built templates on Email Forge",
 };
 
 export default function RootLayout({ children }) {

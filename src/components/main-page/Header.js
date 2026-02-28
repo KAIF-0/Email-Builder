@@ -34,7 +34,7 @@ export default function Header() {
             href="/"
             className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-black to-gray-500"
           >
-            EmailBuilder
+            EmailForge
           </Link>
         </motion.div>
 
